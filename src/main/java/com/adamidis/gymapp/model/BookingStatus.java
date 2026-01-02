@@ -1,7 +1,7 @@
 package com.adamidis.gymapp.model;
 
 public enum BookingStatus {
-    ACTIVE,
-    INACTIVE,
+    CONFIRMED,
+    COMPLETED,
     CANCELLED
 }

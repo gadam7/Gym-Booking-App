@@ -22,12 +22,12 @@ public class GymClass {
     @NotBlank
     @Size(max = 100)
     @Column(nullable = false)
-    private String name;
+    private String className;
 
     @NotBlank
     @Size(max = 100)
     @Column(nullable = false)
-    private String instructor;
+    private String instructorName;
 
     @Min(1) // Minimum duration of 1 minute
     @Column(nullable = false)
@@ -50,6 +50,10 @@ public class GymClass {
     @Column(nullable = false)
     private Integer capacity;
 
+    // NEW FIELD - Track available spots
+    @Column(nullable = false)
+    private Integer availableSpots;
+
     @CreationTimestamp
     @Column(name = "createdAt", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -63,14 +67,16 @@ public class GymClass {
 
     }
 
-    public GymClass(String name, String instructor, Integer duration, Difficulty difficulty, String description, String schedule, Integer capacity) {
-        this.name = name;
-        this.instructor = instructor;
+    public GymClass(String className, String instructorName, Integer duration, Difficulty difficulty,
+                    String description, String schedule, Integer capacity) {
+        this.className = className;
+        this.instructorName = instructorName;
         this.duration = duration;
         this.difficulty = difficulty;
         this.description = description;
         this.schedule = schedule;
         this.capacity = capacity;
+        this.availableSpots = capacity; // Initialize available spots to capacity
     }
 
     // Getters and Setters
@@ -83,20 +89,20 @@ public class GymClass {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getClassName() {
+        return className;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
-    public String getInstructor() {
-        return instructor;
+    public String getInstructorName() {
+        return instructorName;
     }
 
-    public void setInstructor(String instructor) {
-        this.instructor = instructor;
+    public void setInstructorName(String instructorName) {
+        this.instructorName = instructorName;
     }
 
     public Integer getDuration() {
@@ -155,17 +161,26 @@ public class GymClass {
         this.booking = booking;
     }
 
+    public Integer getAvailableSpots() {
+        return availableSpots;
+    }
+
+    public void setAvailableSpots(Integer availableSpots) {
+        this.availableSpots = availableSpots;
+    }
+
     @Override
     public String toString() {
         return "GymClass{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", instructor='" + instructor + '\'' +
+                ", className='" + className + '\'' +
+                ", instructorName='" + instructorName + '\'' +
                 ", duration=" + duration +
                 ", difficulty=" + difficulty +
                 ", description='" + description + '\'' +
                 ", schedule='" + schedule + '\'' +
                 ", capacity=" + capacity +
+                ", availableSpots=" + availableSpots +
                 ", createdAt=" + createdAt +
                 ", booking=" + booking +
                 '}';
