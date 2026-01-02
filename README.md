@@ -58,3 +58,44 @@ A full-stack web application for managing gym class bookings with role-based acc
 - Prevent duplicate bookings by same user
 - Schedule conflict validation
 - Automatic booking status management
+
+---
+
+## 🔧 Database Configuration
+
+Create `src/main/resources/application.properties` with the following configuration:
+
+```properties
+# Application Name
+spring.application.name=gymbook-backend
+
+# Server Configuration
+server.port=8080
+
+# Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/gymbook_db
+spring.datasource.username=YOUR_MYSQL_USERNAME
+spring.datasource.password=YOUR_MYSQL_PASSWORD
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA/Hibernate Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# JWT Configuration
+jwt.secret=YOUR_SECRET_KEY_AT_LEAST_256_BITS
+jwt.expiration=86400000
+
+# Logging
+logging.level.org.springframework. security=DEBUG
+logging.level. com.adamidis.gymapp=DEBUG
+logging.level.org.hibernate. SQL=DEBUG
+
+# Spring Configuration
+spring.main.allow-circular-references=true
+```
+
+⚠️ **Note:** `application.properties` is gitignored and must be created locally.
+
+---
